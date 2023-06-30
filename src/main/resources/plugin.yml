@@ -1,0 +1,9 @@
+name: Swhelper
+version: '${project.version}'
+main: com.hb.swhelper.SWHelper
+api-version: 1.18
+
+commands:
+  swh:
+    description: This is the main plugin command.
+    usage: /swh rkit <true|false>
