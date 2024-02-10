@@ -14,7 +14,7 @@ public class SWIntervals implements Runnable{
     public void run() {
         KokomiHandler();
     }
-    private MatchManager matchManager = MatchManager.get();
+    private final MatchManager matchManager = MatchManager.get();
     private void KokomiHandler(){
 
         for(Player p: Bukkit.getOnlinePlayers()){

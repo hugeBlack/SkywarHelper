@@ -1,7 +1,10 @@
 package com.hb.swhelper;
 
+import com.walrusone.skywarsreloaded.menus.gameoptions.objects.GameKit;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
+
+import java.util.ArrayList;
 
 public class SWHCommand implements CommandExecutor {
 
@@ -10,19 +13,39 @@ public class SWHCommand implements CommandExecutor {
         if(args.length==0) return false;
         if(args[0].equals("rkit")) {
             if(args.length<2){
-                sender.sendMessage("§c/swh rkit <true|false>§r");
+                sender.sendMessage("§c/swh rkit <0|1|2|3> 0: disable kit; 1: player can choose kit; 2: each player gets different random kits; 3: each player gets same kit§r");
                 return false;
             }
 
-            if(args[1].equals("false")) {
-                SWHelper.randomKitEnabled = false;
-                sender.sendMessage("Random Kit: §cDISABLED§r");
+            switch (args[1]) {
+                case "0":
+                    SWHelper.randomKitMode = 0;
+                    sender.sendMessage("Random Kit:§a disable kit§r");
+                    break;
+                case "1":
+                    SWHelper.randomKitMode = 1;
+                    sender.sendMessage("Random Kit:§a player can choose kit§r");
+                    break;
+                case "2":
+                    SWHelper.randomKitMode = 2;
+                    sender.sendMessage("Random Kit:§a each player gets different random kits§l");
+                    break;
+                case "3":
+                    SWHelper.randomKitMode = 3;
+                    sender.sendMessage("Random Kit:§a each player gets same kit§l");
+                    break;
+                default:
+                    sender.sendMessage("§c/swh rkit <0|1|2|3> 0: disable kit; 1: player can choose kit; 2: each player gets different random kits; 3: each player gets same kit§r");
+                    break;
             }
-            else if(args[1].equals("true")){
-                SWHelper.randomKitEnabled = true;
-                sender.sendMessage("Random Kit: §aENABLED§l");
-            }else{
-                sender.sendMessage("§c/swh rkit <true|false>§r");
+
+            return true;
+        }else if(args[0].equals("resetWin")) {
+            ArrayList<GameKit> kits = GameKit.getKits();
+            for(GameKit kit : kits){
+                kit.setWinCount(0);
+                kit.setUseCount(0);
+                GameKit.saveKit(kit);
             }
 
             return true;
