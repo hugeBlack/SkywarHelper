@@ -9,4 +9,4 @@ depend:
 commands:
   swh:
     description: This is the main plugin command.
-    usage: '/swh rkit <0|1|2|3> 0: disable kit; 1: player can choose kit; 2: each player gets different random kits; 3: each player gets same kit§r'
+    usage: '/swh rkit|resetWin|allEvents|start'

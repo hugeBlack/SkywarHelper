@@ -6,6 +6,7 @@ import org.bukkit.plugin.java.JavaPlugin;
 public final class SWHelper extends JavaPlugin {
 
     public static int randomKitMode = 1;
+    public static boolean allEventsEnable = true;
     @Override
     public void onEnable() {
         // Plugin startup logic

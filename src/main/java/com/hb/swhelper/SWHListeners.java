@@ -2,8 +2,10 @@ package com.hb.swhelper;
 
 import com.walrusone.skywarsreloaded.enums.MatchState;
 import com.walrusone.skywarsreloaded.game.GameMap;
+import com.walrusone.skywarsreloaded.matchevents.MatchEvent;
 import com.walrusone.skywarsreloaded.menus.gameoptions.objects.GameKit;
 import org.bukkit.Difficulty;
+import org.bukkit.GameEvent;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -28,6 +30,12 @@ public class SWHListeners implements Listener {
             }
         }
 
+        /*
+        0: disable kit;
+        1: player can choose kit;
+        2: each player gets different random kits;
+        3: each player gets same kit
+         */
 
         ArrayList<Player> playerList = e.getGameMap().getAlivePlayers();
         GameMap gameMap = e.getGameMap();
@@ -64,6 +72,14 @@ public class SWHListeners implements Listener {
                 p.setLevel(100);
             }
         }
+
+        if(SWHelper.allEventsEnable){
+            for(MatchEvent event : e.getGameMap().getEvents()) {
+                event.setEnabled(true);
+                event.reset();
+            }
+        }
+
     }
 
     private void giveRandomKit(Player player,GameMap map, ArrayList<GameKit> kits){
