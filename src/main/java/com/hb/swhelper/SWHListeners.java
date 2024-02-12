@@ -6,6 +6,7 @@ import com.walrusone.skywarsreloaded.matchevents.MatchEvent;
 import com.walrusone.skywarsreloaded.menus.gameoptions.objects.GameKit;
 import org.bukkit.Difficulty;
 import org.bukkit.GameEvent;
+import org.bukkit.GameRule;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -29,7 +30,7 @@ public class SWHListeners implements Listener {
                 p.sendMessage("b");
             }
         }
-
+        e.getGameMap().getCurrentWorld().setGameRule(GameRule.MOB_GRIEFING, true);
         /*
         0: disable kit;
         1: player can choose kit;
