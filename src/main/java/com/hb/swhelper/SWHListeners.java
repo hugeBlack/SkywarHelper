@@ -2,6 +2,7 @@ package com.hb.swhelper;
 
 import com.walrusone.skywarsreloaded.enums.MatchState;
 import com.walrusone.skywarsreloaded.game.GameMap;
+import com.walrusone.skywarsreloaded.matchevents.HealthDecayEvent;
 import com.walrusone.skywarsreloaded.matchevents.MatchEvent;
 import com.walrusone.skywarsreloaded.menus.gameoptions.objects.GameKit;
 import org.bukkit.Difficulty;
@@ -76,6 +77,8 @@ public class SWHListeners implements Listener {
 
         if(SWHelper.allEventsEnable){
             for(MatchEvent event : e.getGameMap().getEvents()) {
+                if(event instanceof HealthDecayEvent)
+                    continue;
                 event.setEnabled(true);
                 event.reset();
             }
